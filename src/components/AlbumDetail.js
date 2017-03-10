@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card.js';
 import CardSection from './CardSection.js';
 import Button from './Button.js';
 
 const AlbumDetail = ({ album }) => {
-    const { title, artist, thumbnail_image, image } = album;
+    const { title, artist, thumbnail_image, image, url } = album;
     const {
         thumbnailStyle,
         headerContentStyle,
@@ -37,11 +37,16 @@ const AlbumDetail = ({ album }) => {
             </CardSection>
 
             <CardSection>
-                <Button />
+                <Button onPress={() => Linking.openURL(url)}>
+                    Buy now
+                </Button>
             </CardSection>
         </Card>
     );
 };
+
+//Above onPress is not the same as the onPress used as a prop inside TouchableOpacity in Button.js.
+
 
 const styles = {
     headerContentStyle: {
